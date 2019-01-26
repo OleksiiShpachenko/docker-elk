@@ -1,0 +1,16 @@
+pipeline {
+    agent {
+            docker {
+                image 'pdmlab/jenkins-node-docker-agent:6.11.1'
+                args '-v /paserver/docker/volumes/elk:/paserver/docker/volumes/elk'
+            }
+        }
+    stages {
+        stage('Copy ELK stack configs') {
+                    steps {
+                         sh 'docker-compose up'
+                    }
+
+        }
+    }
+}
